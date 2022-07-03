@@ -14,7 +14,6 @@
     <name>theatre</name>
     <description>theatre</description>
     <properties>
-        <liquibase.propertyFile>D:\theatre\src\main\resources\liquibase.properties</liquibase.propertyFile>
         <java.version>11</java.version>
     </properties>
 
@@ -115,9 +114,11 @@
                 <groupId>org.liquibase</groupId>
                 <artifactId>liquibase-maven-plugin</artifactId>
                 <version>4.7.1</version>
+<!--                Изменение конфигурации liquibase-->
                 <configuration>
-                    <propertyFile>${liquibase.propertyFile}</propertyFile>
+                    <propertyFile>/src/main/resources/liquibase.properties</propertyFile>
                     <changelogSchemaName>cinema</changelogSchemaName>
+                    <changeLogFile>/src/main/resources/changelog/changelog.xml</changeLogFile>
                 </configuration>
             </plugin>
         </plugins>
