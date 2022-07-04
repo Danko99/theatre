@@ -20,29 +20,8 @@
     <dependencies>
         <dependency>
             <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter</artifactId>
-        </dependency>
-
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-test</artifactId>
-            <scope>test</scope>
-        </dependency>
-
-        <dependency>
-            <groupId>org.jooq</groupId>
-            <artifactId>jooq</artifactId>
-            <version>3.16.3</version>
-        </dependency>
-        <dependency>
-            <groupId>org.jooq</groupId>
-            <artifactId>jooq-meta</artifactId>
-            <version>3.16.3</version>
-        </dependency>
-        <dependency>
-            <groupId>org.jooq</groupId>
-            <artifactId>jooq-codegen</artifactId>
-            <version>3.16.3</version>
+            <artifactId>spring-boot-starter-jooq</artifactId>
+            <version>2.7.1</version>
         </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>
@@ -90,31 +69,39 @@
             <plugin>
                 <groupId>org.jooq</groupId>
                 <artifactId>jooq-codegen-maven</artifactId>
-                <version>3.16.3</version>
-                <configuration>
-                    <jdbc>
-                        <driver>org.postgresql.Driver</driver>
-                        <url>jdbc:postgresql://localhost:5432/postgres</url>
-                        <user>postgres</user>
-                        <password>admin</password>
-                    </jdbc>
-                    <generator>
-                        <database>
-                            <includes>.*</includes>  <!-- включаемые подпакеты и файлы -->
-                            <excludes>  <!-- исключаемые подпакеты и файлы -->
-                                flyway_schema_history
-                            </excludes>
-                            <inputSchema>cinema</inputSchema>  <!-- схема -->
-                        </database>
-                    </generator>
-                </configuration>
+                <executions>
+                    <execution>
+                        <id>execution1</id>
+                        <phase>install</phase>
+                        <configuration>
+                            <jdbc>
+                                <driver>org.postgresql.Driver</driver>
+                                <url>jdbc:postgresql://localhost:5432/postgres</url>
+                                <user>postgres</user>
+                                <password>admin</password>
+                            </jdbc>
+                            <generator>
+                                <database>
+                                    <includes>.*</includes>  <!-- включаемые подпакеты и файлы -->
+                                    <excludes>  <!-- исключаемые подпакеты и файлы -->
+                                        flyway_schema_history
+                                    </excludes>
+                                    <inputSchema>cinema</inputSchema>  <!-- схема -->
+                                </database>
+                            </generator>
+                        </configuration>
+                        <goals>
+                            <goal>generate</goal>
+                        </goals>
+                    </execution>
+                </executions>
             </plugin>
 
             <plugin>
                 <groupId>org.liquibase</groupId>
                 <artifactId>liquibase-maven-plugin</artifactId>
                 <version>4.7.1</version>
-<!--                Изменение конфигурации liquibase-->
+                <!--                Изменение конфигурации liquibase-->
                 <configuration>
                     <propertyFile>/src/main/resources/liquibase.properties</propertyFile>
                     <changelogSchemaName>cinema</changelogSchemaName>
