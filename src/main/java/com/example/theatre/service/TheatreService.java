@@ -1,9 +1,10 @@
 package com.example.theatre.service;
 
+import com.example.theatre.model.Spectacle;
 import com.example.theatre.repository.TheatreRepository;
-import org.jooq.Record1;
-import org.jooq.Result;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 @Service
 public class TheatreService {
@@ -13,9 +14,8 @@ public class TheatreService {
         this.theatreRepository = theatreRepository;
     }
 
+    public List<Spectacle> getAllSpectacles(){
 
-    public Result<Record1<String>> getResult(){
-        return theatreRepository.getJoinedTables();
+        return theatreRepository.getAllSpectacles();
     }
-
 }

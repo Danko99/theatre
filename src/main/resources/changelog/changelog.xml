@@ -7,67 +7,50 @@
     <changeSet id="1" author="Liquibase">
         <createTable
                 schemaName="cinema"
-                tableName="department">
-            <column name="department_id" type="int">
+                tableName="theaterHall">
+            <column name="hall_id" type="int">
                 <constraints primaryKey="true"/>
             </column>
-            <column name="name_department" type="varchar"/>
+            <column name="name_hall" type="varchar"/>
         </createTable>
         <insert
                 schemaName="cinema"
-                tableName="department">
-            <column name="department_id" value="1"/>
-            <column name="name_department" value="Кафедра математики"/>
+                tableName="theaterHall">
+            <column name="hall_id" value="1"/>
+            <column name="name_hall" value="Большой"/>
         </insert>
         <insert
                 schemaName="cinema"
-                tableName="department">
-            <column name="department_id" value="2"/>
-            <column name="name_department" value="Кафедра физики"/>
+                tableName="theaterHall">
+            <column name="hall_id" value="2"/>
+            <column name="name_hall" value="Малый"/>
         </insert>
-        <insert
-                schemaName="cinema"
-                tableName="department">
-            <column name="department_id" value="3"/>
-            <column name="name_department" value="Кафедра информатики"/>
-        </insert>
-
     </changeSet>
+
     <changeSet id="2" author="Liquibase">
         <createTable
                 schemaName="cinema"
-                tableName="program">
-            <column name="program_id" type="int"/>
-            <column name="name_program" type="varchar"/>
-            <column name="department_id" type="int"/>
-            <column name="plan" type="varchar"/>
+                tableName="spectacle">
+            <column name="spectacle_id" type="int">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="name_spectacle" type="varchar"/>
+            <column name="hall_id" type="int"/>
         </createTable>
         <insert
                 schemaName="cinema"
-                tableName="program">
-            <column name="program_id" value="1"/>
-            <column name="name_program" value="Бакалавриат"/>
-            <column name="department_id" value="1"/>
-            <column name="plan" value="Учебный"/>
-
+                tableName="spectacle">
+            <column name="spectacle_id" value="1"/>
+            <column name="name_spectacle" value="Гамлет"/>
+            <column name="hall_id" value="2"/>
         </insert>
         <insert
                 schemaName="cinema"
-                tableName="program">
-            <column name="program_id" value="2"/>
-            <column name="name_program" value="Магистратура"/>
-            <column name="department_id" value="3"/>
-            <column name="plan" value="Производственный"/>
+                tableName="spectacle">
+            <column name="spectacle_id" value="2"/>
+            <column name="name_spectacle" value="Любовь и голуби"/>
+            <column name="hall_id" value="2"/>
         </insert>
-
-    </changeSet>
-    <changeSet id="3" author="Liquibase">
-        <createTable
-                schemaName="cinema"
-                tableName="students">
-            <column name="student_id" type="int"/>
-            <column name="name_student" type="varchar"/>
-        </createTable>
     </changeSet>
 
 </databaseChangeLog>

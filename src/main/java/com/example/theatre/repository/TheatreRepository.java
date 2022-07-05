@@ -1,13 +1,17 @@
 package com.example.theatre.repository;
 
+import com.example.theatre.model.Spectacle;
 import org.jooq.DSLContext;
-import org.jooq.Record1;
+import org.jooq.Record;
 import org.jooq.Result;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import static org.jooq.generated.Tables.DEPARTMENT;
-import static org.jooq.generated.Tables.PROGRAM;
+import java.util.ArrayList;
+import java.util.List;
+
+import static org.jooq.generated.Tables.SPECTACLE;
+import static org.jooq.generated.Tables.THEATERHALL;
 
 @Repository
 public class TheatreRepository {
@@ -15,17 +19,18 @@ public class TheatreRepository {
     @Autowired
     private DSLContext jooq;
 
-    public Result<Record1<String>> getJoinedTables() {
+    public List<Spectacle> getAllSpectacles() {
+        Result<Record> fetch = jooq.select()
+                .from(SPECTACLE)
+                .innerJoin(THEATERHALL)
+                .on(SPECTACLE.HALL_ID.eq(THEATERHALL.HALL_ID)).fetch();
 
+        List<Spectacle> spectacles = new ArrayList<>();
+        for (Record record : fetch) {
+            spectacles.add(new Spectacle(record.get(SPECTACLE.NAME_SPECTACLE), record.get(THEATERHALL.NAME_HALL)));
+        }
 
-        Result<Record1<String>> fetch = jooq.select(DEPARTMENT.NAME_DEPARTMENT)
-                .from(DEPARTMENT)
-                .innerJoin(PROGRAM)
-                .on(PROGRAM.DEPARTMENT_ID.eq(DEPARTMENT.DEPARTMENT_ID))
-                .fetch();
-
-        return fetch;
-
+        return spectacles;
     }
 
 }
