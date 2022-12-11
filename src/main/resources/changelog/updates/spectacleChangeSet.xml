@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                      http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.7.xsd">
+    <changeSet id="2" author="Liquibase">
+        <createTable
+                schemaName="cinema"
+                tableName="spectacle">
+            <column name="spectacle_id" type="int">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="name_spectacle" type="varchar"/>
+            <column name="hall_id" type="int"/>
+        </createTable>
+        <insert
+                schemaName="cinema"
+                tableName="spectacle">
+            <column name="spectacle_id" value="1"/>
+            <column name="name_spectacle" value="Гамлет"/>
+            <column name="hall_id" value="2"/>
+        </insert>
+        <insert
+                schemaName="cinema"
+                tableName="spectacle">
+            <column name="spectacle_id" value="2"/>
+            <column name="name_spectacle" value="Любовь и голуби"/>
+            <column name="hall_id" value="2"/>
+        </insert>
+    </changeSet>
+</databaseChangeLog>

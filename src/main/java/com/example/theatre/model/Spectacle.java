@@ -1,17 +1,32 @@
 package com.example.theatre.model;
 
+import liquibase.pro.packaged.A;
+import org.springframework.data.annotation.Id;
+import org.springframework.data.relational.core.mapping.Column;
+import org.springframework.data.relational.core.mapping.Table;
+
 import java.io.Serializable;
 
+@Table(value = "cinema\".\"spectacle")
 public class Spectacle implements Serializable {
+
+    @Id
+    @Column("spectacle_id")
+    private Integer id;
+    @Column("name_spectacle")
     private String nameSpectacle;
-    private String nameHall;
+    @Column("hall_id")
+    private Integer hallId;
 
     public Spectacle() {
     }
 
-    public Spectacle(String nameSpectacle, String nameHall) {
-        this.nameSpectacle = nameSpectacle;
-        this.nameHall = nameHall;
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
     }
 
     public String getNameSpectacle() {
@@ -22,19 +37,20 @@ public class Spectacle implements Serializable {
         this.nameSpectacle = nameSpectacle;
     }
 
-    public String getNameHall() {
-        return nameHall;
+    public Integer getHallId() {
+        return hallId;
     }
 
-    public void setNameHall(String nameHall) {
-        this.nameHall = nameHall;
+    public void setHallId(Integer hallId) {
+        this.hallId = hallId;
     }
 
     @Override
     public String toString() {
         return "Spectacle{" +
-                "nameSpectacle='" + nameSpectacle + '\'' +
-                ", nameHall='" + nameHall + '\'' +
+                "id=" + id +
+                ", nameSpectacle='" + nameSpectacle + '\'' +
+                ", hallId=" + hallId +
                 '}';
     }
 }

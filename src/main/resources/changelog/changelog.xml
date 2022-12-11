@@ -4,53 +4,8 @@
         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
 		https://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.4.xsd">
-    <changeSet id="1" author="Liquibase">
-        <createTable
-                schemaName="cinema"
-                tableName="theaterHall">
-            <column name="hall_id" type="int">
-                <constraints primaryKey="true"/>
-            </column>
-            <column name="name_hall" type="varchar"/>
-        </createTable>
-        <insert
-                schemaName="cinema"
-                tableName="theaterHall">
-            <column name="hall_id" value="1"/>
-            <column name="name_hall" value="Большой"/>
-        </insert>
-        <insert
-                schemaName="cinema"
-                tableName="theaterHall">
-            <column name="hall_id" value="2"/>
-            <column name="name_hall" value="Малый"/>
-        </insert>
-    </changeSet>
 
-    <changeSet id="2" author="Liquibase">
-        <createTable
-                schemaName="cinema"
-                tableName="spectacle">
-            <column name="spectacle_id" type="int">
-                <constraints primaryKey="true"/>
-            </column>
-            <column name="name_spectacle" type="varchar"/>
-            <column name="hall_id" type="int"/>
-        </createTable>
-        <insert
-                schemaName="cinema"
-                tableName="spectacle">
-            <column name="spectacle_id" value="1"/>
-            <column name="name_spectacle" value="Гамлет"/>
-            <column name="hall_id" value="2"/>
-        </insert>
-        <insert
-                schemaName="cinema"
-                tableName="spectacle">
-            <column name="spectacle_id" value="2"/>
-            <column name="name_spectacle" value="Любовь и голуби"/>
-            <column name="hall_id" value="2"/>
-        </insert>
-    </changeSet>
+    <include file="updates/theatreHallChangeSet.xml" relativeToChangelogFile="true"/>
+    <include file="updates/spectacleChangeSet.xml" relativeToChangelogFile="true"/>
 
 </databaseChangeLog>
